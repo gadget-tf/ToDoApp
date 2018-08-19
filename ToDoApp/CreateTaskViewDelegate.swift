@@ -62,6 +62,12 @@ class CreateTaskView: UIView {
     }
     
     @objc func saveButtonTapped(_ sender: UIButton) {
+        delegate?.createView(taskEditting: self, text: taskTextField.text!)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        formatter.locale = Locale(identifier: "ja_JP")
+        let date = formatter.date(from: deadlineTextField.text!)!
+        delegate?.createView(deadlineEditting: self, deadline: date)
         delegate?.createView(saveButtonDidTap: self)
     }
     
